@@ -1,4 +1,7 @@
+import * as SecureStore from 'expo-secure-store';
 import { useCallback } from 'react';
+
+import { STORED_PROPERTY_PREFIX } from '@/config';
 
 import { useStoreDispatch, useStoreSelector } from '../store';
 import { actions as syncActions } from './slice';
@@ -11,6 +14,19 @@ export const useApp = () => {
   const setClientId = useCallback(
     (id: string) => {
       dispatch(syncActions.setClientId(id));
+      // Non blocking save to secure store
+      SecureStore.setItemAsync(`${STORED_PROPERTY_PREFIX}.clientId`, id)
+        .then(() => {
+          console.log(
+            `[useApp.setRealm] Saved clientId '${id}' into secure store`,
+          );
+        })
+        .catch((err) => {
+          console.error(
+            `[useApp.setRealm] Unable to save clientId into the secure store`,
+            err,
+          );
+        });
     },
     [dispatch],
   );
@@ -18,6 +34,19 @@ export const useApp = () => {
   const setRealm = useCallback(
     (realm: string) => {
       dispatch(syncActions.setRealm(realm));
+      // Non blocking save to secure store
+      SecureStore.setItemAsync(`${STORED_PROPERTY_PREFIX}.realm`, realm)
+        .then(() => {
+          console.log(
+            `[useApp.setRealm] Saved realm '${realm}' into secure store`,
+          );
+        })
+        .catch((err) => {
+          console.error(
+            `[useApp.setRealm] Unable to save realm into the secure store`,
+            err,
+          );
+        });
     },
     [dispatch],
   );
@@ -25,6 +54,19 @@ export const useApp = () => {
   const setClientSecret = useCallback(
     (secret: string) => {
       dispatch(syncActions.setClientSecret(secret));
+      // Non blocking save to secure store
+      SecureStore.setItemAsync(`${STORED_PROPERTY_PREFIX}.clientSecret`, secret)
+        .then(() => {
+          console.log(
+            `[useApp.setRealm] Saved clientSecret '${secret}' into secure store`,
+          );
+        })
+        .catch((err) => {
+          console.error(
+            `[useApp.setRealm] Unable to save clientSecret into the secure store`,
+            err,
+          );
+        });
     },
     [dispatch],
   );
@@ -32,6 +74,19 @@ export const useApp = () => {
   const setTemplateId = useCallback(
     (id: string) => {
       dispatch(syncActions.setTemplateId(id));
+      // Non blocking save to secure store
+      SecureStore.setItemAsync(`${STORED_PROPERTY_PREFIX}.templateId`, id)
+        .then(() => {
+          console.log(
+            `[useApp.setRealm] Saved templateId '${id}' into secure store`,
+          );
+        })
+        .catch((err) => {
+          console.error(
+            `[useApp.setRealm] Unable to save templateId into the secure store`,
+            err,
+          );
+        });
     },
     [dispatch],
   );

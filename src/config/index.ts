@@ -29,6 +29,7 @@ const env = cleanEnv(
     UNSAFE_CLIENT_ID: str({ default: '' }),
     UNSAFE_CLIENT_SECRET: str({ default: '' }),
     UNSAFE_TEMPLATE_ID: str({ default: '' }),
+    STORED_PROPERTY_PREFIX: str({ default: 'code200.vanuatupass.demo' }),
   },
 );
 
@@ -41,6 +42,7 @@ export const {
   UNSAFE_CLIENT_ID,
   UNSAFE_CLIENT_SECRET,
   UNSAFE_TEMPLATE_ID,
+  STORED_PROPERTY_PREFIX,
 } = env;
 
 // Compute some ENV variables
