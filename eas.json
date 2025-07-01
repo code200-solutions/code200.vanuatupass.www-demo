@@ -1,0 +1,45 @@
+{
+  "cli": {
+    "version": ">= 16.13.3",
+    "requireCommit": false,
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "base": {
+      "node": "20.19.0",
+      "autoIncrement": true,
+      "credentialsSource": "remote",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "env": {
+        "EXPO_PUBLIC_VERBOSE": "info"
+      }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    // Staging environment with internal distribution
+    "staging": {
+      "extends": "base",
+      "distribution": "internal",
+      // Android build configuration
+      "android": {
+        "buildType": "apk"
+      },
+      "developmentClient": false,
+      // iOS build configuration
+      "ios": {},
+      // Environment variables
+      "env": {
+        "EXPO_PUBLIC_ENVIRONMENT": "staging",
+        "EXPO_PUBLIC_BACKEND_BASEURL": "https://kc-staging.pej.vu",
+        "EXPO_PUBLIC_REALM": "vanuatupass-dev"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
