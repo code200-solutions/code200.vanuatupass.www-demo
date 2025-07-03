@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <View style={{ paddingTop: top }}>
       <View className='flex h-14 flex-row items-center justify-between px-4 lg:px-6'>
-        <Text className={'text-center text-gray-300'}>v1.0.0</Text>
+        <Text className={'text-center text-gray-300'}>v0.0.1</Text>
         <View className='flex flex-row gap-4 sm:gap-6'>
           <Link
             className='text-md font-medium hover:underline web:underline-offset-4'

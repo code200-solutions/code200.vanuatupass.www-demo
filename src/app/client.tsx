@@ -241,8 +241,8 @@ export default function ClientScreen() {
             disabled={
               !clientId || !clientSecret || !templateId || !personIDNumber
             }
-            className='bg-[#0d3890] dark:bg-[#0d3890]'
-            titleClassName='text:white dark:text-white'
+            className='bg-[#0d3890]'
+            titleClassName='text:white '
             onPress={sendAuthRequest}
           />
           {step <= 2 && (
@@ -408,7 +408,6 @@ export default function ClientScreen() {
       {/* Reset button */}
       <Button
         title='Reset'
-        disabled={!clientId || !clientSecret || !templateId || !personIDNumber}
         className='h-[60] rounded-t-none bg-[#139cea] dark:bg-[#139cea]'
         titleClassName='text:white dark:text-white text-xl font-bold'
         onPress={reset}
