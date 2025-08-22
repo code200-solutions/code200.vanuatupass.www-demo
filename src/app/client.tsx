@@ -1,6 +1,12 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from 'react-native';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 
 import axios from 'axios';
@@ -65,12 +71,12 @@ export default function ClientScreen() {
     reset();
 
     const url = new URL(
-      `/realms/${realm}/protocol/openid-connect/ext/ciba/auth`,
+      Platform.select({
+        web: `/kc/fwd/auth`,
+        native: `/realms/${realm}/protocol/openid-connect/ext/ciba/auth`,
+      }),
       BACKEND_BASEURL,
     );
-
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const data = qs.stringify({
       client_id: clientId,
@@ -137,7 +143,10 @@ export default function ClientScreen() {
     if (step >= 3) return;
 
     const url = new URL(
-      `/realms/${realm}/protocol/openid-connect/token`,
+      Platform.select({
+        web: `/kc/fwd/token`,
+        native: `/realms/${realm}/protocol/openid-connect/token`,
+      }),
       BACKEND_BASEURL,
     );
 
@@ -167,6 +176,15 @@ export default function ClientScreen() {
     axios
       .request(config)
       .then((response) => {
+        // Catch errors with ok status code
+        if (response.data.error) {
+          throw {
+            isAxiosError: true,
+            response: {
+              data: response.data,
+            },
+          };
+        }
         setPollRequestStatus('ok');
         setStep(3);
 
