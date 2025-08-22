@@ -116,7 +116,7 @@ export default function ConfigurationScreen() {
       <Pressable className='absolute inset-0' onPress={() => router.back()} />
 
       {/* Modal content */}
-      <View className='z-10 mt-[40%] w-fit max-w-[350] gap-4 self-center rounded-md bg-gray-100 p-6'>
+      <View className='z-10 mt-[20%] w-fit max-w-[350] gap-4 self-center rounded-md bg-gray-100 p-6'>
         {/* Realm */}
         <View className='flex-row items-center space-x-4'>
           <Text className='w-2/5 text-gray-700'>Keycloak Realm</Text>
