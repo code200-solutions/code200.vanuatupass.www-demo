@@ -242,7 +242,7 @@ export default function ClientScreen() {
               !clientId || !clientSecret || !templateId || !personIDNumber
             }
             className='bg-[#0d3890]'
-            titleClassName='text:white '
+            titleClassName='text-white'
             onPress={sendAuthRequest}
           />
           {step <= 2 && (
